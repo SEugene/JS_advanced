@@ -50,7 +50,11 @@ class ProductItem{
            </div>
                                
            <div class="sale">
-               <button class="buy-btn">Купить</button>
+               
+           <h3>Количество к покупке: 
+                <input type="text" name="кол-во" size="15" maxlength="30">  
+           </h3>  
+           <button class="buy-btn">Купить</button>
            </div>               
            
        </div>`
