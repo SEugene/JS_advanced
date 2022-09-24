@@ -10,10 +10,7 @@
 
         <h2 class="main_menu">Собери свой бургер</h1>
 
-        <div class="product_sum">
-            <p>Цена бургера:<span id="price">0</span></p>
-            <p>Калорийность:<span id="calories">0</span></p>
-        </div>
+        <div class="product_sum"></div>
 
     </header>
     
@@ -41,16 +38,21 @@
                 <br><br>
                 <fieldset>
                     <p>Выбери добавку:</p>
-                    <input type="radio" name="topping" id="spice" value="spice" checked>
+                    <input type="checkbox" name="topping" id="spice" value="spice" checked>
                     <label for="cheese">Посыпать приправой (+15 рублей, +0 калорий)</label> <br>
-                    <input type="radio" name="topping" id="mayonnaise" value="mayonnaise">
+                    <input type="checkbox" name="topping" id="mayonnaise" value="mayonnaise">
                     <label for="cheese">Полить майонезом (+20 рублей, +5 калорий)</label>
                 </fieldset>
                 <br><br>
 
-                <button id="assemble">Собрать бургер</button>
+                <button id="assemble" class="buy-btn">Собрать бургер</button>
             
             </form>
+
+            <div class="product_sum">
+                <p>Цена бургера:<span id="price">0</span></p>
+                <p>Калорийность:<span id="calories">0</span></p>
+            </div>
 
         </div>
 

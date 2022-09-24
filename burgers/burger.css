@@ -18,70 +18,22 @@ header{
 }
 
 .product_sum{
-	color: red;
+	color: darkred;
 	font-weight: bold;
+	font-size: 30px;
 }
 
 .main_menu{
     float: left;
 }
 
-.menu{
-    color: #191970;
-    text-decoration: none;
-}
-
-.menu:hover{
-    color: #B22222;
-}
-
 .products{
 	display: flex;
 	min-height: 100px;
-	width: 100%;
+	width: 80%;
 	padding: 100px;
 	flex-direction: column;
-}
-
-.prod_item{
-	display: flex;
-	width: 90%;
-	margin: 10px 0;
-	box-shadow: 0 0 6px 1px lightblue;
-	justify-content: space-between;
-}
-
-.item{
-	display: flex;
-	margin-left: 10px;
-	width: 50%
-}
-
-.img_item{
-	width: 50%
-}
-
-.image{
-	height: 100%;
-	max-height: 200px;
-}
-
-.description{
-	height: 100%;
-	margin-left: 30px;
-}
-
-.description h4{
-	font-size: 2em;
-	padding: 10px 0;
-}
-
-.price{
-	color: darkslateblue;
-}
-
-.price span{
-	font-size: 3em;
+	font-size: larger;
 }
 
 .buy-btn{
@@ -97,17 +49,8 @@ header{
 
 .buy-btn:hover{
 	background: #87CEFA;
-    color: red;
+    color: darkred;
 	font-weight: bold;
-}
-
-.sale{
-	display: flex;
-	width: 15%;
-	flex-direction: column;
-	align-items: flex-end;
-    justify-content: inherit;
-	margin: 10px;
 }
 
 footer{
