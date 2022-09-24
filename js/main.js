@@ -2,6 +2,7 @@ class ProductList{
     constructor(container='.products'){
         this.container = container;
         this.goods = [];
+        //this.sum = 0
         this._fetchProducts();     //рекомендация, чтобы метод был вызван в текущем классе
         this.render();             //вывод товаров на страницу
     }
@@ -16,13 +17,25 @@ class ProductList{
         ];
     }
 
+    productListSum(){
+        let sum = 0;
+        for(let item of this.goods){
+            sum += item.price || 1000           // если цена не указана, подставляется значение "по умолчанию"
+        };
+        return sum
+    }
+
     render(){
         const block = document.querySelector(this.container);
         for(let product of this.goods){
              const item = new ProductItem(product);
              block.insertAdjacentHTML("beforeend",item.render());
         }
+
+        const newBlock = document.querySelector(".product_sum")
+        newBlock.textContent =`Сумма цен товаров в списке: ${this.productListSum()}`
     }
+    
 }
 
 
@@ -36,7 +49,7 @@ class ProductItem{
 
     render(){
            return `<div class="prod_item">    
-           <div class="img_item">
+           <div class="img_item ${this.id}">
                <img src="${this.image}" class="image">
            </div>
 
@@ -58,6 +71,55 @@ class ProductItem{
            </div>               
            
        </div>`
+    }
+}
+
+
+class BasketItem{
+    constructor(product, amount){
+        this.product = product;
+        this.amount = amount
+    }
+
+    // функция подсчета стоимости "строки" в Корзине
+    basketProductSumCount(){
+        return this.product.price * this.amount
+    }
+
+    // функция отрисовки "строки" Корзины
+    render(){
+
+    }
+}
+
+class Basket{
+    constructor(basketItems){
+        this.basketItems = []
+    }
+
+    // функция по заполнению корзины - пользователь выбирает товар, его количество и нажимает "Купить" - в Корзину добавляется нужное количество товара
+    basketFill(){
+        
+    }
+    
+    // функция по изменению количества товара в корзине
+    basketItemChange(){
+
+    }
+
+    // функция, удаляющая товар из корзины
+    basketItemDelete(){
+
+    }
+    
+    // функция подсчета стоимости всех товаров в корзине
+    basketTotalSum(){
+
+    }
+
+    // функция отрисовки Корзины
+    render(){
+
     }
 }
 

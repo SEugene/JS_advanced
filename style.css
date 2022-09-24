@@ -13,7 +13,13 @@ header{
 	margin-top: 0px;
 	padding: 20px;
 	align-items: center;
+	justify-content: space-between;
+	font-size: 30px;
+}
 
+.product_sum{
+	color: red;
+	font-weight: bold;
 }
 
 .main_menu{
@@ -21,7 +27,6 @@ header{
 }
 
 .menu{
-    font-size: 30px;
     color: #191970;
     text-decoration: none;
 }
