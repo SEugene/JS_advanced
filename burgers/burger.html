@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Бургерная</title>
+    <link rel="stylesheet" type="text/css" href="burger.css" />
+</head>
+<body>
+    <header>        
+
+        <h2 class="main_menu">Собери свой бургер</h1>
+
+        <div class="product_sum"></div>
+
+    </header>
+    
+    <main>
+        <div class="products">
+
+            <form>
+                <fieldset>
+                    <p>Выбери размер бургера:</p>
+                    <input type="radio" name="size" id="big" value="big" checked>
+                    <label for="cheese">Большой (100 рублей, 40 калорий)</label> <br>
+                    <input type="radio" name="size" id="small" value="small">
+                    <label for="cheese">Маленький (50 рублей, 20 калорий)</label>
+                </fieldset>
+                <br><br>
+                <fieldset>
+                    <p>Выбери начинку:</p>
+                    <input type="radio" name="stuffing" id="cheese" value="cheese" checked>
+                    <label for="cheese">С сыром (+10 рублей, +20 калорий)</label> <br>
+                    <input type="radio" name="stuffing" id="salad" value="salad">
+                    <label for="cheese">С салатом (+20 рублей, +5 калорий)</label> <br>
+                    <input type="radio" name="stuffing" id="potatoes" value="potatoes">
+                    <label for="cheese">С картофелем (+15 рублей, +10 калорий)</label> 
+                </fieldset>
+                <br><br>
+                <fieldset>
+                    <p>Выбери добавку:</p>
+                    <input type="checkbox" name="topping" id="spice" value="spice" checked>
+                    <label for="cheese">Посыпать приправой (+15 рублей, +0 калорий)</label> <br>
+                    <input type="checkbox" name="topping" id="mayonnaise" value="mayonnaise">
+                    <label for="cheese">Полить майонезом (+20 рублей, +5 калорий)</label>
+                </fieldset>
+                <br><br>
+
+                <button id="assemble" class="buy-btn">Собрать бургер</button>
+            
+            </form>
+
+            <div class="product_sum">
+                <p>Цена бургера:<span id="price">0</span></p>
+                <p>Калорийность:<span id="calories">0</span></p>
+            </div>
+
+        </div>
+
+    </main>
+    <footer>
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+        <p>&copy; SEugene / JS Advanced course</p>
+    </footer>
+    <script src="burger.js"></script>
+    <script>
+        window.onload = () => {
+            document.getElementById("assemble").addEventListener('click', e => {
+                e.preventDefault();
+                let burger = new Hamburger('size', 'stuffing', 'topping');
+                console.log(burger);
+                burger.showResult("#price", "#calories");
+            });
+        }
+    </script>
+</body>
+</html>
