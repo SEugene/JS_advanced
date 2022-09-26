@@ -11,18 +11,6 @@ class ProductList{
             });
     }
 
-    /*
-    _fetchProducts(){
-        this.goods = [
-            {id: 1, title: 'Notebook', price: 2000, image: 'img/notebook.webp'},
-            {id: 2, title: 'Mouse', price: 20, image: 'img/mouse.webp'},
-            {id: 3, title: 'Keyboard', price: 200, image: 'img/keyboard.webp'},
-            {id: 4, title: 'Gamepad', price: 50, image: 'img/gamepad.webp'},
-            {id: 5, title: 'Monitor'},
-        ];
-    }
-    */
-
     _getProducts(){
         return fetch(`${API}/catalogData.json`)
             .then(result => result.json())
@@ -60,29 +48,25 @@ class ProductItem{
     }
 
     render(){
-           return `<div class="prod_item">    
-           <div class="img_item ${this.id}">
-               <img src="${this.image}" class="image">
-           </div>
+           return `
+           <div class="prod_item">    
+                <div class="img_item ${this.id}">
+                    <img src="${this.image}" class="image">
+                </div>
 
-           <div class="item">                    
-               <div class="description">
-                   <h4>${this.title}</h4>
-                   <div class="price">
-                       Цена: <span>${this.price}</span>руб.
-                   </div>
-               </div>
-           </div>
+                <div class="item">                    
+                    <div class="description">
+                        <h4>${this.title}</h4>
+                        <div class="price">
+                            Цена: <span>${this.price}</span>руб.
+                        </div>
+                    </div>
+                </div>
                                
-           <div class="sale">
-               
-           <h3>Количество к покупке: 
-                <input type="text" name="кол-во" size="15" maxlength="30">  
-           </h3>  
-           <button class="buy-btn">Купить</button>
-           </div>               
-           
-       </div>`
+                <div class="sale">             
+                    <button id="product-${this.id}" class="buy-btn">Купить</button>
+                </div>           
+            </div>`
     }
 }
 
@@ -117,12 +101,9 @@ class BasketItem{
                </div>
            </div>
                                
-           <div class="sale">
-               
-           <p>Количество к покупке: ${this.amount}
-                
-           </p>  
-
+           <div class="sale">                              
+                <p>Количество к покупке: ${this.amount}</p>  
+                <button>X</button> 
            </div>               
            
        </div>`
@@ -170,14 +151,11 @@ class Basket{
     // функция отрисовки Корзины
     render(){
         const block = document.querySelector(this.container);
-        console.log(block);
-        console.log(this.goods);
-                
+               
         for(let product of this.goods.contents){
              const item = new BasketItem(product);
              block.insertAdjacentHTML("beforeend",item.render());
-        }
-        
+        }        
     }
 }
 

@@ -69,7 +69,6 @@
             document.getElementById("assemble").addEventListener('click', e => {
                 e.preventDefault();
                 let burger = new Hamburger('size', 'stuffing', 'topping');
-                console.log(burger);
                 burger.showResult("#price", "#calories");
             });
         }
