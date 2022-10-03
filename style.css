@@ -1,0 +1,13 @@
+.invisible{
+    display: none;
+}
+
+.error{
+    color: red;
+    font: bold;
+}
+
+.wrong{
+    border-color: red;
+    border-width: medium;
+}

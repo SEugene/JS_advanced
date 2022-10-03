@@ -2,13 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Интернет-магазин</title>
+    <title>Homework-4</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body>
     <p id='mytext'></p>
     <button id="hw-1">Simple Replace</button>
     <button id="hw-2">Smart Replace</button>
+    <br><br><br>
+    <form action='#' id="myform">
+        <label>
+            Your name
+            <input id="name">
+            <br>
+            <p class="invisible error" id="name-error"></p>
+            <br>
+        </label>
+        <label>
+            Your phone
+            <input id="phone">
+            <br>
+            <p class="invisible error" id="phone-error"></p><br>
+        </label>
+        <label>
+            Your e-mail
+            <input id="email">
+            <br>
+            <p class="invisible error" id="email-error"></p><br>
+        </label>
+        <button id="val-btn">Submit</button>
+    </form>
 </body>
 
 <script src="main.js"> </script>
+<script src="validator.js"> </script>
+<script>
+    window.onload = () => {
+        document.getElementById('myform').addEventListener('submit', e => {
+            let validatorItem = new Validator('myform')
+        })
+    }    
+</script>
