@@ -6,6 +6,10 @@ const app = new Vue({
         catalogUrl: '/catalogData.json',
         products: [],
         filtered: [],
+        basket: {
+            basketItems: [],
+            basketTotalSum: 0
+        },
         imgCatalog: 'img/gamepad.webp',
         searchLine: '',
         show: false
@@ -23,8 +27,19 @@ const app = new Vue({
                 })
         },
         addProduct(product){
-                console.log(product.id_product);
-        }
+            const basketCheck = this.basket.basketItems.find(good => product.id_product == good.id_product);
+            if (basketCheck) {
+                basketCheck.quantity++;
+                this.basket.basketTotalSum += basketCheck.price
+            } else {
+                this.$set(product, 'quantity', 1);
+                this.basket.basketItems.push(product);
+                this.basket.basketTotalSum += product.price
+            };
+            
+            
+            console.log(this.basket.basketTotalSum)   
+        },
     },
     mounted(){
        this.getJson(`${API + this.catalogUrl}`)

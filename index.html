@@ -20,20 +20,12 @@
             </button>
         </form>
 
-        <div class="product_sum"></div>
+        <div class="product_sum">Общая стоимость корзины:{{this.basket.basketTotalSum}} $</div>
 
     </header>
     
-    <main>
-
-        <div id="openModal" class="modalDialog">
-            <div>
-                <a href="#close" title="Закрыть" class="close">X</a>
-                <h2>Корзина</h2>
-                <div class="basket"></div>
-            </div>
-        </div>
-
+    <main> 
+     
         <div class="products">
             <div class="prod_item" v-for="product of filtered" :key="product.id_product">    
                 <div class="img_item">
@@ -44,7 +36,7 @@
                     <div class="description">
                         <h4>{{product.product_name}}</h4>
                         <div class="price">
-                            Цена: <span>{{product.price}} $</span>руб.
+                            Цена: <span>{{product.price}}</span>$
                         </div>
                     </div>
                 </div>
@@ -54,17 +46,28 @@
                 </div>           
             </div>
 
-<!--
-            <div class="product-item" v-for="product of products" :key="product.id_product">
-                <img :src="imgCatalog" alt="Some img">
-                <div class="desc">
-                    <h3>{{product.product_name}}</h3>
-                    <p>{{product.price}} $</p>
-                    <button class="buy-btn" @click="addProduct(product)">Купить</button>
+            <div id="openModal" class="modalDialog">
+                <div>
+                    <a href="#close" title="Закрыть" class="close">X</a>
+                    <h2>Корзина</h2>
+                    <div class="basket">
+                        <div class="prod_item" v-for="item of basket.basketItems" :key="item.id_product">    
+           
+                            <div class="item">                    
+                                <div class="description">
+                                    <h4>{{item.product_name}}</h4>
+                                    <div class="price">
+                                        Цена: <span>{{item.price}}</span>$
+                                        Количество: <span>{{item.quantity}}</span>шт.
+                                    </div>
+                                </div>
+                            </div>
+    
+                    </div>
                 </div>
             </div>
-        </div>
-    -->
+
+
     </main>
     <footer>
         <script>
