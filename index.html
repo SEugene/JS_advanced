@@ -6,12 +6,19 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
+<div id="app">
     <header>        
-
         <ul class="main_menu">
             <a href="#" class="menu">Каталог</a>
             <a href="#openModal" class="menu">Корзина</a>
         </ul>
+
+        <form action="#" class="search-form" @submit.prevent="filterGoods">
+            <input type="text" class="search-field" v-model="searchLine">
+            <button class="btn-search" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
 
         <div class="product_sum"></div>
 
@@ -27,15 +34,47 @@
             </div>
         </div>
 
+        <div class="products">
+            <div class="prod_item" v-for="product of filtered" :key="product.id_product">    
+                <div class="img_item">
+                    <img :src="imgCatalog" class="image">
+                </div>
 
-        <div class="products"></div>
+                <div class="item">                    
+                    <div class="description">
+                        <h4>{{product.product_name}}</h4>
+                        <div class="price">
+                            Цена: <span>{{product.price}} $</span>руб.
+                        </div>
+                    </div>
+                </div>
+                               
+                <div class="sale">             
+                    <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                </div>           
+            </div>
+
+<!--
+            <div class="product-item" v-for="product of products" :key="product.id_product">
+                <img :src="imgCatalog" alt="Some img">
+                <div class="desc">
+                    <h3>{{product.product_name}}</h3>
+                    <p>{{product.price}} $</p>
+                    <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                </div>
+            </div>
+        </div>
+    -->
     </main>
     <footer>
-        <script type="text/javascript">
+        <script>
             document.write(new Date().getFullYear());
         </script>
         <p>&copy; SEugene / JS Advanced course</p>
     </footer>
+</div>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
