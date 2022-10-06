@@ -2,40 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Интернет-магазин</title>
+    <title>Homework-4</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
+
 <body>
-    <header>        
-
-        <ul class="main_menu">
-            <a href="#" class="menu">Каталог</a>
-            <a href="#openModal" class="menu">Корзина</a>
-        </ul>
-
-        <div class="product_sum"></div>
-
-    </header>
-    
-    <main>
-
-        <div id="openModal" class="modalDialog">
-            <div>
-                <a href="#close" title="Закрыть" class="close">X</a>
-                <h2>Корзина</h2>
-                <div class="basket"></div>
-            </div>
-        </div>
-
-
-        <div class="products"></div>
-    </main>
-    <footer>
-        <script type="text/javascript">
-            document.write(new Date().getFullYear());
-        </script>
-        <p>&copy; SEugene / JS Advanced course</p>
-    </footer>
-    <script src="js/main.js"></script>
+    <p id='mytext'></p>
+    <button id="hw-1">Simple Replace</button>
+    <button id="hw-2">Smart Replace</button>
+    <br><br><br>
+    <form action='#' id="myform">
+        <label>
+            Your name
+            <input id="name">
+            <br>
+            <p class="invisible error" id="name-error"></p>
+            <br>
+        </label>
+        <label>
+            Your phone
+            <input id="phone">
+            <br>
+            <p class="invisible error" id="phone-error"></p><br>
+        </label>
+        <label>
+            Your e-mail
+            <input id="email">
+            <br>
+            <p class="invisible error" id="email-error"></p><br>
+        </label>
+        <button id="val-btn">Submit</button>
+    </form>
 </body>
-</html>
+
+<script src="main.js"> </script>
+<script src="validator.js"> </script>
+<script>
+    window.onload = () => {
+        document.getElementById('myform').addEventListener('submit', e => {
+            let validatorItem = new Validator('myform')
+        })
+    }    
+</script>
