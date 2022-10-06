@@ -36,10 +36,17 @@ const app = new Vue({
                 this.basket.basketItems.push(product);
                 this.basket.basketTotalSum += product.price
             };
-            
-            
-            console.log(this.basket.basketTotalSum)   
         },
+        deleteProduct(product){
+            //const basketCheck = this.basket.basketItems.find(good => product.id_product == good.id_product);
+            if (product.quantity>1) {
+                product.quantity--;
+                this.basket.basketTotalSum -= product.price
+            } else {
+                this.basket.basketItems.splice(product, 1);
+                this.basket.basketTotalSum -= product.price
+            };
+        }
     },
     mounted(){
        this.getJson(`${API + this.catalogUrl}`)

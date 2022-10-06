@@ -57,8 +57,12 @@
                                 <div class="description">
                                     <h4>{{item.product_name}}</h4>
                                     <div class="price">
-                                        Цена: <span>{{item.price}}</span>$
-                                        Количество: <span>{{item.quantity}}</span>шт.
+                                        Цена: <span>{{item.price}}</span>$                                        
+                                        <div class="basket_quantity">    
+                                            <button class="buy-btn" @click="addProduct(item)">+</button>
+                                            <span>{{item.quantity}}</span>шт.
+                                            <button class="decrease-btn" @click="deleteProduct(item)">-</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

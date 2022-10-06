@@ -45,7 +45,7 @@ header{
 
 .prod_item{
 	display: flex;
-	width: 90%;
+	width: 100%;
 	margin: 10px 0;
 	box-shadow: 0 0 6px 1px lightblue;
 	justify-content: space-between;
@@ -163,8 +163,8 @@ h3{
 }
 
 .modalDialog > div {
-	width: 90%;
-	height: 1000px;
+	width: 100%;
+	height: 100%;
 	position: relative;
 	margin: 10% auto;
 	padding: 5px 20px 13px 20px;
@@ -190,4 +190,27 @@ h3{
 	-moz-box-shadow: 1px 1px 3px #000;
 	-webkit-box-shadow: 1px 1px 3px #000;
 	box-shadow: 1px 1px 3px #000;
+}
+
+.basket_quantity{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.decrease-btn{
+	display: block;
+	width: 100%;	
+	background: #87CEFA;
+	padding: 10px;
+	text-align: center;
+	font-size: larger;
+	cursor: pointer;
+    border: #1E90FF;
+}
+
+.decrease-btn:hover{
+	background: #1E90FF;
+    color: red;
+	font-weight: bold;
 }
