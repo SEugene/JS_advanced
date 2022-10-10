@@ -11,12 +11,11 @@ const app = new Vue({
             basketTotalSum: 0
         },
         imgCatalog: 'img/gamepad.webp',
-        searchLine: '',
-        show: false
+        searchLine: ''
     },
     methods: {
-        filterGoods(){
-         const regexp = new RegExp(this.searchLine, 'i');
+        filterGoods(searchLine){
+         const regexp = new RegExp(searchLine, 'i');
          this.filtered = this.products.filter(product => regexp.test(product.product_name));
         },
         getJson(url){
@@ -38,14 +37,16 @@ const app = new Vue({
             };
         },
         deleteProduct(product){
-            //const basketCheck = this.basket.basketItems.find(good => product.id_product == good.id_product);
             if (product.quantity>1) {
                 product.quantity--;
                 this.basket.basketTotalSum -= product.price
+                
             } else {
-                this.basket.basketItems.splice(product, 1);
+                this.basket.basketItems.splice(this.basket.basketItems.indexOf(product), 1);
                 this.basket.basketTotalSum -= product.price
+                
             };
+            console.log(this.basket)
         }
     },
     mounted(){
