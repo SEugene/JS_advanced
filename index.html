@@ -8,17 +8,22 @@
 <body>
 <div id="app">
     <header>        
+
         <ul class="main_menu">
             <a href="#" class="menu">Каталог</a>
             <a href="#openModal" class="menu">Корзина</a>
         </ul>
 
+        <!--
         <form action="#" class="search-form" @submit.prevent="filterGoods">
             <input type="text" class="search-field" v-model="searchLine">
-            <button class="btn-search" type="submit">
+            <button type="submit" class="btn-search">
                 <i class="fas fa-search"></i>
             </button>
         </form>
+        -->
+
+        <search></search>
 
         <div class="product_sum">Общая стоимость корзины:{{this.basket.basketTotalSum}} $</div>
 
@@ -26,50 +31,11 @@
     
     <main> 
      
-        <div class="products">
-            <div class="prod_item" v-for="product of filtered" :key="product.id_product">    
-                <div class="img_item">
-                    <img :src="imgCatalog" class="image">
-                </div>
+        <products :products="filtered" :img="imgCatalog" @add-product="addProduct"></products>
 
-                <div class="item">                    
-                    <div class="description">
-                        <h4>{{product.product_name}}</h4>
-                        <div class="price">
-                            Цена: <span>{{product.price}}</span>$
-                        </div>
-                    </div>
-                </div>
-                               
-                <div class="sale">             
-                    <button class="buy-btn" @click="addProduct(product)">Купить</button>
-                </div>           
-            </div>
-
-            <div id="openModal" class="modalDialog">
-                <div>
-                    <a href="#close" title="Закрыть" class="close">X</a>
-                    <h2>Корзина</h2>
-                    <div class="basket">
-                        <div class="prod_item" v-for="item of basket.basketItems" :key="item.id_product">    
-           
-                            <div class="item">                    
-                                <div class="description">
-                                    <h4>{{item.product_name}}</h4>
-                                    <div class="price">
-                                        Цена: <span>{{item.price}}</span>$                                        
-                                        <div class="basket_quantity">    
-                                            <button class="buy-btn" @click="addProduct(item)">+</button>
-                                            <span>{{item.quantity}}</span>шт.
-                                            <button class="decrease-btn" @click="deleteProduct(item)">-</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-    
-                    </div>
-                </div>
-            </div>
+        <basket :basket-items="basket.basketItems" 
+        @add-product="addProduct" 
+        @delete-product="deleteProduct"></basket>
 
 
     </main>
@@ -82,6 +48,9 @@
 </div>
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/ProductComponent.js"></script>
+    <script src="js/BasketComponent.js"></script>
+    <script src="js/SearchComponent.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
