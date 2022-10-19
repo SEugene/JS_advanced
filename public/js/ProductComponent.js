@@ -29,22 +29,15 @@ const products = {
             catalogUrl: '/catalogData.json',
             products: [],
             filtered: [],
-            img: 'img/gamepad.webp'
         }
     },
     mounted() {
-        this.$parent.getJson(`${API + this.catalogUrl}`)
+        this.$parent.getJson(`/api/products`)
         .then(data => {
             for(let el of data){
                 this.products.push(el);
             }
         });
-        this.$parent.getJson(`getProducts.json`)
-            .then(data => {
-                for(let el of data){
-                    this.products.push(el);
-                }
-            });
         this.filtered = this.products
     },
     methods: {
@@ -56,7 +49,7 @@ const products = {
     template: `<div class="products">
     <product v-for="item of filtered" 
     :key="item.id_product" 
-    :img="img"
+    :img="item.img"
     :product="item"></product>
    </div>`
 }

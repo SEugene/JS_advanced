@@ -31,7 +31,7 @@ const basket = {
             basketUrl: '/getBasket.json'
         }
     },
-
+/*
     methods:{
         addProduct(product){
             const basketCheck = this.myBasket.basketItems.find(good => good.id_product === product.id_product);
@@ -59,25 +59,71 @@ const basket = {
             console.log(this.myBasket.basketTotalSum)
         },
     },
-
+*/
     
     mounted () {
-        this.$parent.getJson(`${API + this.basketUrl}`)
+        this.$parent.getJson(`/api/cart`)
         .then(data => {            
             for(let el of data.contents){                
                 this.myBasket.basketItems.push(el);
-                this.myBasket.basketTotalSum += el.price
+                this.myBasket.basketTotalSum += el.price * el.quantity
                 
             }     
         })
     },
-    
+
+    methods: {
+        addProduct(product){
+            const basketCheck = this.myBasket.basketItems.find(good => good.id_product === product.id_product);
+            if(basketCheck){
+                this.$parent.putJson(`/api/cart/${basketCheck.id_product}`, {quantity: 1})
+                    .then(data => {
+                        if(data.result === 1){
+                            basketCheck.quantity++;
+                            this.myBasket.basketTotalSum += basketCheck.price
+                        }
+                    })
+            } else {
+                const prod = Object.assign({quantity: 1}, product);
+                this.$parent.postJson(`/api/cart`, prod)
+                    .then(data => {
+                        if(data.result === 1){
+                            this.myBasket.basketItems.push (prod);
+                            this.myBasket.basketTotalSum += product.price
+                        }
+                    })
+            }
+        },
+
+
+        deleteProduct(product){
+            const basketCheck = this.myBasket.basketItems.find(good => good.id_product === product.id_product);
+            if(basketCheck){
+                if (basketCheck.quantity > 1) {
+                    this.$parent.putJson(`/api/cart/${basketCheck.id_product}`, {quantity: -1})
+                    .then(data => {
+                        if(data.result === 1){
+                            basketCheck.quantity--;
+                            this.myBasket.basketTotalSum -= basketCheck.price
+                        }
+                    })} else {
+                        this.$parent.deleteJson(`/api/cart/${basketCheck.id_product}`)
+                        .then(data => {
+                            if(data.result === 1){
+                                this.myBasket.basketItems.splice(this.myBasket.basketItems.indexOf(product), 1);
+                                this.myBasket.basketTotalSum -= product.price
+                            }
+                        })
+                    }  
+                }
+        }   
+    },    
 
     template: `  
     <div id="openModal" class="modalDialog">
         <div>
             <a href="#close" title="Закрыть" class="close">X</a>
-            <h2 class="product_sum">Корзина - {{ myBasket.basketTotalSum }} руб.</h2>
+            <h2 class="product_sum">В корзине товаров: {{ myBasket.basketItems.length }} на {{ myBasket.basketTotalSum }} $</h2>
             <div class="basket">
                 <basket-item v-for="item of myBasket.basketItems" 
                 :key="item.id_product" 
