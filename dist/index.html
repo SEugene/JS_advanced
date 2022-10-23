@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+<script defer src="./build.js"></script></head>
+<body>
+<div id="app">
+    <header>        
+
+        <ul class="main_menu">
+            <a href="#" class="menu">Каталог</a>
+            <a href="#openModal" class="menu">Корзина</a>
+        </ul>
+
+        <!--
+        <form action="#" class="search-form" @submit.prevent="filterGoods">
+            <input type="text" class="search-field" v-model="searchLine">
+            <button type="submit" class="btn-search">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+        -->
+
+        <search_element></search_element>
+
+        
+
+    </header>
+    
+    <main> 
+     
+        <products ref="products"></products>
+
+        <basket ref="basket"></basket>
+
+
+    </main>
+    <footer>
+        <!--
+        <script>
+            document.write(new Date().getFullYear());
+        </script>
+        <p>&copy; SEugene / JS Advanced course</p>
+        -->
+    </footer>
+</div>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/ProductComponent.js"></script>
+    <script src="js/BasketComponent.js"></script>
+    <script src="js/SearchComponent.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
