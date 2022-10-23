@@ -6,18 +6,15 @@ const app = new Vue({
         catalogUrl: '/catalogData.json',
         products: [],
         filtered: [],
-        basket: {
+        myBasket: {
             basketItems: [],
             basketTotalSum: 0
         },
-        imgCatalog: 'img/gamepad.webp',
+        img: 'img/gamepad.webp',
         searchLine: ''
     },
+    components: {basket, products, search_element},
     methods: {
-        filterGoods(searchLine){
-         const regexp = new RegExp(searchLine, 'i');
-         this.filtered = this.products.filter(product => regexp.test(product.product_name));
-        },
         getJson(url){
             return fetch(url)
                 .then(result => result.json())
@@ -25,45 +22,52 @@ const app = new Vue({
                     console.log(error);
                 })
         },
-        addProduct(product){
-            const basketCheck = this.basket.basketItems.find(good => product.id_product == good.id_product);
-            if (basketCheck) {
-                basketCheck.quantity++;
-                this.basket.basketTotalSum += basketCheck.price
-            } else {
-                this.$set(product, 'quantity', 1);
-                this.basket.basketItems.push(product);
-                this.basket.basketTotalSum += product.price
-            };
-        },
-        deleteProduct(product){
-            if (product.quantity>1) {
-                product.quantity--;
-                this.basket.basketTotalSum -= product.price
-                
-            } else {
-                this.basket.basketItems.splice(this.basket.basketItems.indexOf(product), 1);
-                this.basket.basketTotalSum -= product.price
-                
-            };
-            console.log(this.basket)
-        }
-    },
-    mounted(){
-       this.getJson(`${API + this.catalogUrl}`)
-           .then(data => {
-               for(let el of data){
-                   this.products.push(el);
-               }
-           });
-        this.getJson(`getProducts.json`)
-            .then(data => {
-                for(let el of data){
-                    this.products.push(el);
-                }
-            });
-        this.filtered = this.products;
 
+        postJson(url, data){
+            return fetch(url, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+                })
+                .then(result => result.json())
+                .catch(error => {
+                    console.log(error);
+                })
+        },
+
+        putJson(url, data){
+            return fetch(url, {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+                })
+                .then(result => result.json())
+                .catch(error => {
+                    console.log(error);
+                })
+        },
+
+        deleteJson(url) {
+            return fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+            })
+            .then(result => result.json())
+            .catch(error => {
+                console.log(error);
+            })
+        }
+    },    
+
+    mounted(){
+ 
     }
 })
 

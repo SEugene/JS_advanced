@@ -23,27 +23,27 @@
         </form>
         -->
 
-        <search></search>
+        <search_element></search_element>
 
-        <div class="product_sum">Общая стоимость корзины:{{this.basket.basketTotalSum}} $</div>
+        
 
     </header>
     
     <main> 
      
-        <products :products="filtered" :img="imgCatalog" @add-product="addProduct"></products>
+        <products ref="products"></products>
 
-        <basket :basket-items="basket.basketItems" 
-        @add-product="addProduct" 
-        @delete-product="deleteProduct"></basket>
+        <basket ref="basket"></basket>
 
 
     </main>
     <footer>
+        <!--
         <script>
             document.write(new Date().getFullYear());
         </script>
         <p>&copy; SEugene / JS Advanced course</p>
+        -->
     </footer>
 </div>
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
