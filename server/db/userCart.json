@@ -1,18 +1,12 @@
 {
-    "amount": 130200,
-    "countGoods": 4,
+    "amount": 39000,
+    "countGoods": 3,
     "contents": [
         {
             "quantity": 5,
             "id_product": 124,
             "product_name": "Keyboard",
             "price": 1600
-        },
-        {
-            "quantity": 2,
-            "id_product": 123,
-            "product_name": "Notebook",
-            "price": 45600
         },
         {
             "quantity": 10,
